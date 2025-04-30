@@ -1,0 +1,17 @@
+import { DUMMY_NEWS } from "@/dummy-news"
+
+export default async function NewsPageById ({params}) {
+    const newsSlug = await params.slug; //params is asynchronized component, must be awaited
+    const newsItem = DUMMY_NEWS.find(newsItem => newsItem.slug === newsSlug);
+
+    return (
+        <article className="news-article">
+            <header>
+                <img src={`/images/news/${newsItem.image}`} alt={newsItem.title}></img>
+                <h1>{newsItem.title}</h1>
+                <time dateTime={newsItem.date}>{newsItem.date}</time>
+            </header>
+            <p>{newsItem.content}</p>
+        </article>
+    )
+}
