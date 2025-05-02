@@ -1,9 +1,10 @@
 import { DUMMY_NEWS } from "@/dummy-news"
 import { notFound } from "next/navigation";
+import * as React from 'react'
 
-export default async function NewsPageById ({params}) {
-    const newsSlug = await params.slug; //params is asynchronized component, must be awaited
-    const newsItem = DUMMY_NEWS.find(newsItem => newsItem.slug === newsSlug);
+export default function NewsPageById ({params}) {
+    const {slug} =  React.use(params); //params is asynchronized component, must be awaited OR React.use() is a better option for handling the params
+    const newsItem = DUMMY_NEWS.find(newsItem => newsItem.slug === slug);
 
     if(!newsItem){
         notFound()
